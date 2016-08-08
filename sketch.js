@@ -20,7 +20,7 @@ var onoff;
 
 function setup() {
   createCanvas(1000, 700);
-  w = width+90;
+  w = width+200;
   dx = (TWO_PI / wavelength) * xspacing;
   yvalues = new Array(floor(w/xspacing));
   noStroke();
