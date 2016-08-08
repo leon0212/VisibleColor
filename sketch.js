@@ -1,8 +1,8 @@
-var xspacing=2;    // wavelenght
+var xspacing = 30;    // wavelenght
 var w;                // Width of entire wave
 var theta = 0.0;      // Start angle at 0
 var amplitude = 75.0; // Height of wave
-var wavelength=400;   // How many pixels before the wave repeats
+var wavelength = 500.0;   // How many pixels before the wave repeats
 var dx;               // Value for incrementing x
 var yvalues;  // Using an array to store height values for the wave
 var r;//colors
@@ -21,7 +21,8 @@ var onoff;
 function setup() {
   createCanvas(1000, 700);
   w = width+16;
-
+  dx = (TWO_PI / wavelength) * xspacing;
+  yvalues = new Array(floor(w/xspacing));
   noStroke();
   cSliderLabel = createP("VISIBLE LIGHT SPECTRUM");
   cSliderLabel.position(400,0);
@@ -30,13 +31,12 @@ function setup() {
   cSlider.position(280,70);
   cSlider.class("sim-sliderb");
 
-  yvalues = new Array(floor(w/xspacing));
 }
 
 function draw() {
 dx = (TWO_PI / wavelength) * xspacing;
 wavelength= cSlider.value();
-  var vc = cSlider.value();
+  var vc = cSlider.value()
   if ((399<vc) && (vc<455)){
   r=177;
   g=7;
@@ -98,7 +98,7 @@ function calcWave() {
   // For every x value, calculate a y value with sine function
   var x = theta;
   for (var i = 0; i < yvalues.length; i++) {
-    yvalues[i] = sin(x)*amplitude;
+    yvalues[i] = Math.sin(x)*amplitude;
     x+=dx;
     fill(r,g,b);
   }
@@ -107,12 +107,26 @@ function calcWave() {
 
 function renderWave() {
   // A simple way to draw the wave with an ellipse at each location
-  for (var x = 0; x < yvalues.length; x++) {
-    fill(r,g,b);
-  	ellipse(x*xspacing, height/2.5+yvalues[x], 6, 6);
-    fill(r,g,b,30);
-    ellipse(x*xspacing, height/2.46+yvalues[x], 6, 6);
-  }
+   push();
+   noFill();
+  strokeWeight(4);
+  stroke(r,g,b);
+  beginShape();
+    for (var x1 = -1; x1 < yvalues.length; x1++) {
+    curveVertex(x1*xspacing, height/2.5+yvalues[x1]);
+    }
+  endShape();
+  pop();
+ push();
+fill(r,g,b,30);
+  strokeWeight(4);
+  stroke(r,g,b,30);
+  beginShape();
+    for (var x1 = -1; x1 < yvalues.length; x1++) {
+    curveVertex(x1*xspacing, height/2.46+yvalues[x1]);
+    }
+  endShape();
+  pop();
 }
 
 function turnonoff() {
