@@ -19,8 +19,8 @@ var onoff;
 
 
 function setup() {
-  createCanvas(1000, 700);
-  w = width+100;
+  createCanvas(1000, 500);
+  w = width+90;
   dx = (TWO_PI / wavelength) * xspacing;
   yvalues = new Array(floor(w/xspacing));
   noStroke();
@@ -113,7 +113,7 @@ function renderWave() {
   stroke(r,g,b);
   beginShape();
     for (var x1 = -1; x1 < yvalues.length; x1++) {
-    curveVertex(x1*xspacing, height/2.5+yvalues[x1]);
+    curveVertex(x1*xspacing, height/1.75+yvalues[x1]);
     }
   endShape();
   pop();
@@ -123,7 +123,7 @@ fill(r,g,b,30);
   stroke(r,g,b,30);
   beginShape();
     for (var x1 = -1; x1 < yvalues.length; x1++) {
-    curveVertex(x1*xspacing, height/2.46+yvalues[x1]);
+    curveVertex(x1*xspacing, height/1.73+yvalues[x1]);
     }
   endShape();
   pop();
