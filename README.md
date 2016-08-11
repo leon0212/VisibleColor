@@ -1,3 +1,3 @@
 # VisibleColor
-Visible light spectrum
 Visible Light Spectrum
+https://leon0212.github.io/VisibleColor/
